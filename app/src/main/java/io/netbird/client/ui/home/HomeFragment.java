@@ -1,19 +1,17 @@
 package io.netbird.client.ui.home;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-import com.airbnb.lottie.LottieAnimationView;
 
 import io.netbird.client.PlatformUtils;
 import io.netbird.client.R;
@@ -33,7 +31,7 @@ public class HomeFragment extends Fragment implements StateListener {
     private TextView textHostname;
     private TextView textNetworkAddress;
 
-    private LottieAnimationView buttonConnect;
+    private ImageView buttonConnect;
     private ButtonAnimation buttonAnimation;
     private boolean isConnected;
 
@@ -64,21 +62,11 @@ public class HomeFragment extends Fragment implements StateListener {
         updatePeerCount(0,0);
 
         buttonConnect = binding.btnConnect;
-        // Try to load the correct Lottie file for dark/light mode, fallback to light if dark is missing
-        boolean isDarkMode = (requireContext().getResources().getConfiguration().uiMode
-                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
-        String lottieFile = isDarkMode ? "button_full_dark.json" : "button_full.json";
-        try {
-            buttonConnect.setAnimation(lottieFile);
-        } catch (Exception e) {
-            // fallback to light mode animation if dark mode file is missing or invalid
-            buttonConnect.setAnimation("button_full.json");
-        }
 
         if(buttonAnimation == null) {
             buttonAnimation = new ButtonAnimation();
         }
-        buttonAnimation.refresh(buttonConnect, textConnStatus);
+        buttonAnimation.refresh(textConnStatus);
 
         buttonConnect.setOnClickListener(v -> {
             if (serviceAccessor == null) {
