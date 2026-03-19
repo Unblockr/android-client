@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="@color/nb_gray_bg"
+    android:layout_marginBottom="8dp"
+    android:focusable="true"
+    android:focusableInTouchMode="false"
+    android:clickable="true"
+    android:foreground="@drawable/focus_highlight">
+
+    <RadioButton
+        android:id="@+id/radio_egress_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/text_egress_group_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/nb_txt_light"
+        android:textSize="15sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="egress-us-east"
+        app:layout_constraintStart_toEndOf="@id/radio_egress_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp" />
+
+    <TextView
+        android:id="@+id/text_egress_group_peers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/nb_txt_light"
+        android:textSize="12sp"
+        tools:text="3 peers"
+        app:layout_constraintStart_toEndOf="@id/radio_egress_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_egress_group_name"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -257,9 +257,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
 
-        if (PreferenceUI.isFirstLaunch(this)) {
-            PreferenceUI.setFirstLaunchDone(this);
-            showFirstInstallFragment();
+        if (!PreferenceUI.isRegistered(this)) {
+            showSetupFragment();
         }
 
     }
@@ -488,11 +487,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bindService(bindIntent, serviceIPC, Context.BIND_ABOVE_CLIENT);
     }
 
-    private void showFirstInstallFragment() {
+    private void showSetupFragment() {
         if (navController != null) {
-            navController.navigate(R.id.firstInstallFragment);
+            navController.navigate(R.id.nav_setup);
         } else {
-            Log.w(LOGTAG, "NavController is null, can't navigate to FirstInstallFragment");
+            Log.w(LOGTAG, "NavController is null, can't navigate to SetupFragment");
         }
     }
 

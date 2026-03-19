@@ -10,17 +10,12 @@
     <string name="menu_advanced">Advanced</string>
     <string name="menu_about">About</string>
     <string name="menu_docs">Docs</string>
-    <string name="menu_change_server">Change Server</string>
     <string name="menu_profiles">Profiles</string>
 
     <string name="main_status_disconnected">Disconnected</string>
     <string name="main_desc_bg_mask">background mask</string>
     <string name="main_desc_connect">connect-disconnect</string>
 
-    <string name="fragment_firstinstall_txt">By default you will connect to NetBird\'s cloud servers. You can access the change_server menu to use another server.</string>
-    <string name="fragment_firstinstall_continue">Continue</string>
-    <string name="fragment_firstinstall_desc_logo">NetBird logo</string>
-    <string name="fragment_firstinstall_androidtv_beta">Android TV support is currently in beta. Some features may not work as expected.</string>
 
 
     <string name="about_version">Version:&#160;</string>
@@ -47,25 +42,6 @@
     <string name="networks_hint_search_networks">Search resources</string>
     <string name="networks_desc_exit_node">exit node</string>
 
-    <string name="change_server_title_server">Server</string>
-    <string name="change_server_hint">https://example-api.domain.com:443</string>
-    <string name="change_server_setup_key">Add this device with a setup key</string>
-    <string name="change_server_setup_key_hint">"0EF79C2F-DEE1-419B-BFC8-1BF529332998"</string>
-    <string name="change_server_error_invalid_setup_key">Invalid setup key format</string>
-
-    <string name="change_server_btn">Change</string>
-    <string name="change_server_verifying">Verifying…</string>
-    <string name="change_server_btn_reset">Use NetBird server</string>
-
-    <string name="change_server_alert_title">Change Server</string>
-    <string name="change_server_alert_yes">Yes</string>
-    <string name="change_server_alert_cancel">Cancel</string>
-    <string name="change_server_alert_desc">Changing server will erase the local config and disconnect this device from the current NetBird account.</string>
-
-    <string name="change_server_success_title">Server was changed</string>
-    <string name="change_server_success_desc">Click on the connect button to continue</string>
-    <string name="change_server_success_cloe">Ok</string>
-    <string name="change_server_success_icon">Success icon</string>
 
 
     <string name="advanced_title_presharedkey">Add a pre-shared key</string>
@@ -109,10 +85,32 @@
     <string name="advanced_force_relay_conn_desc">Forces usage of relay when connecting to peers</string>
     <string name="exclamation_mark">exclamation mark</string>
     <string name="reconnectionNeededWarningMessage">To apply the setting, you will need to reconnect.</string>
-    <string name="change_server_setup_key_warning">Using setup keys for user devices is not recommended. SSO with MFA provides stronger security, proper user-device association, and periodic re-authentication.</string>
-    <string name="change_server_error_invalid_server_url">Invalid URL format</string>
+
     <string name="device_code">Device Code: %s</string>
     <string name="tv_menu_hint">Hold left directional button to open the menu</string>
+
+    <!-- Device setup -->
+    <string name="setup_desc">Scan your setup QR code or enter a setup key to connect to the Unblockr network.</string>
+    <string name="setup_scan_qr">Scan QR Code</string>
+    <string name="setup_or">— or —</string>
+    <string name="setup_key_hint">Setup key (0EF79C2F-…)</string>
+    <string name="setup_connect">Connect</string>
+    <string name="setup_scan_prompt">Scan the setup QR code</string>
+    <string name="setup_key_required">Please enter a setup key</string>
+    <string name="setup_camera_denied">Camera permission needed to scan QR codes</string>
+
+    <!-- Egress node selection -->
+    <string name="menu_egress">Egress Nodes</string>
+    <string name="egress_title">Select Egress Node</string>
+    <string name="egress_none_selected">None (direct connection)</string>
+    <string name="egress_loading">Loading egress nodes…</string>
+    <string name="egress_empty">No egress groups found</string>
+    <string name="egress_error">Failed to load egress nodes</string>
+    <string name="egress_no_auth">Not authenticated. Connect with a setup key first.</string>
+    <string name="egress_clear">Clear selection</string>
+    <string name="egress_peers">%d peer(s)</string>
+    <string name="egress_selected">Selected</string>
+    <string name="egress_select_error">Failed to update egress selection</string>
 
     <!-- Profile strings -->
     <string name="profile_default">Profile: default</string>

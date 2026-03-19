@@ -77,12 +77,15 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(libs.browser)  // Added for CustomTabsIntent
     implementation(libs.lottie)
     implementation(libs.zxing)
+    implementation(libs.okhttp)
 
     if (hasGoogleServicesJson) {
         implementation(platform(libs.firebase.bom))

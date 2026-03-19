@@ -12,6 +12,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_egress"
+            android:icon="@drawable/ic_menu_egress"
+            android:title="@string/menu_egress" />
+        <item
             android:id="@+id/nav_advanced"
             android:icon="@drawable/ic_menu_advanced"
             android:title="@string/menu_advanced" />
@@ -23,9 +27,5 @@
             android:id="@+id/nav_docs"
             android:icon="@drawable/ic_menu_docs"
             android:title="@string/menu_docs" />
-        <item
-            android:id="@+id/nav_change_server"
-            android:icon="@drawable/ic_menu_change_server"
-            android:title="@string/menu_change_server" />
     </group>
 </menu>

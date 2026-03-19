@@ -38,10 +38,60 @@ This document summarizes the decisions and strategy for implementing egress node
 
 ## Implementation Plan
 
-### Phase 1: Authentication Enhancement
-1. Add setup key input UI to login flow
-2. Modify `ChangeServerFragmentViewModel` to handle setup key auth
+### Phase 1: Authentication Enhancement — Setup Key Entry
+1. Add setup key input UI to login flow, with three input methods (see below)
+2. `ChangeServerFragmentViewModel` auth/validation logic is unchanged
 3. Update config storage for API access
+
+#### Setup Key Input Methods
+
+Typing a 36-character UUID is impractical, especially on Android TV (D-pad only). Three methods
+are provided, all populating the existing `editTextSetupKey` field:
+
+| Method | Phone/Tablet | ChromeOS | Android TV |
+|---|---|---|---|
+| **Short code** (primary) | Yes | Yes | Yes — 6 chars, D-pad viable |
+| **QR scan** (convenience) | Yes | Yes | Hidden — no camera |
+| **Clipboard paste** (convenience) | Yes | Yes | Yes (TV Remote keyboard) |
+
+##### Short Code Flow
+
+The admin system owns a short-code → UUID mapping cache:
+
+```
+Admin system:
+  1. Creates setup key via Netbird management API → gets full UUID
+  2. Generates a short code (e.g. B7K2XN, 6–8 alphanumeric chars)
+  3. Stores  short_code → UUID  with TTL + single-use flag
+  4. Exposes: GET /api/redeem?code=B7K2XN → {"setup_key":"0EF79C2F-..."}
+
+Android app:
+  1. User types B7K2XN
+  2. App calls resolution endpoint (URL derived from management server URL)
+  3. Gets full UUID, auto-fills setup key field, proceeds with normal auth
+```
+
+**Backend contract:**
+- `GET {management_host}/api/redeem?code={shortCode}`
+- Success: `200 {"setup_key":"<UUID>"}`
+- Failure: `404 {"error":"invalid or expired code"}`
+- Endpoint must be unauthenticated; codes should be single-use with 15–30 min TTL
+
+**Resolver URL:** Derived from the management server URL (same host + `/api/redeem`). No extra config field needed.
+
+##### Files Changed for Phase 1
+
+| File | Change |
+|---|---|
+| `app/src/main/AndroidManifest.xml` | Add `CAMERA` permission + `uses-feature android:required="false"` |
+| `app/src/main/res/layout/fragment_server.xml` | Short code field + Resolve button; QR scan button; clipboard paste button |
+| `app/src/main/java/io/netbird/client/ui/server/ChangeServerFragment.java` | Short code HTTP resolution; ZXing QR scan launcher; clipboard UUID detection; hide scan on TV |
+| `app/src/main/res/values/strings.xml` | New string resources for UI labels and error messages |
+| `app/src/main/res/drawable/ic_qr_code_scanner_24.xml` | Material vector icon for scan button |
+
+No new library dependencies:
+- HTTP resolution uses `java.net.HttpURLConnection` (no OkHttp needed for this call)
+- QR scanning via `zxing-android-embedded` v4.3.0 (already declared)
 
 ### Phase 2: API Client Development
 1. Create `NetbirdApiClient` class with HTTP methods
@@ -66,9 +116,10 @@ This document summarizes the decisions and strategy for implementing egress node
 ## Key Technical Details
 
 ### Dependencies
-- OkHttp for HTTP client
+- OkHttp for HTTP client (Phase 2+ API calls; Phase 1 short-code resolution uses `HttpURLConnection`)
 - Existing gomobile bindings for auth
 - Android SharedPreferences for persistence
+- `zxing-android-embedded` v4.3.0 (already declared) for QR scanning
 
 ### Error Handling
 - Network errors: Show retry options
@@ -97,6 +148,7 @@ This document summarizes the decisions and strategy for implementing egress node
 - Exact naming convention for egress groups (to be confirmed with admin system)
 - Whether to show all groups or filter by permissions/metadata
 - Handling of multiple concurrent selections (edge case)
+- Confirm short-code resolver endpoint path with admin system team (assumed `/api/redeem`)
 
 ## Success Criteria
 - Users can authenticate with setup keys

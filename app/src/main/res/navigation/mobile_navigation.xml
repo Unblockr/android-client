@@ -31,19 +31,14 @@
         tools:layout="@layout/fragment_profiles" />
 
     <fragment
-        android:id="@+id/nav_change_server"
-        android:name="io.netbird.client.ui.server.ChangeServerFragment"
-        android:label="@string/menu_change_server"
-        tools:layout="@layout/fragment_server">
-        <argument
-            android:name="hideAlert"
-            app:argType="boolean"
-            android:defaultValue="false" />
-    </fragment>
+        android:id="@+id/nav_setup"
+        android:name="io.netbird.client.ui.setup.SetupFragment"
+        android:label="@string/setup_connect"
+        tools:layout="@layout/fragment_setup" />
 
     <fragment
-        android:id="@+id/firstInstallFragment"
-        android:name="io.netbird.client.ui.fistinstall.FirstInstallFragment"
-        android:label="FirstInstall"
-        tools:layout="@layout/fragment_firstinstall" />
+        android:id="@+id/nav_egress"
+        android:name="io.netbird.client.ui.egress.EgressFragment"
+        android:label="@string/menu_egress"
+        tools:layout="@layout/fragment_egress" />
 </navigation>
