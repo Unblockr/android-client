@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NetBird</string>
+    <string name="app_name">Unblockr</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -21,7 +21,7 @@
     <string name="about_version">Version:&#160;</string>
     <string name="about_license"><u>License agreement</u></string>
     <string name="about_privacy_poliy"><u>Privacy policy</u></string>
-    <string name="about_rights">© 2025 NetBird all rights reserved</string>
+    <string name="about_rights">© 2025 Unblockr all rights reserved</string>
 
     <string name="zero_peers_no_machines">It looks like there are no machines that you can connect to…</string>
     <string name="zero_peers_btn_learn_why">Learn why</string>
@@ -61,20 +61,20 @@
     <string name="advanced_disable_server_routes">Disable server routes</string>
     <string name="advanced_disable_server_routes_desc">Prevents this device from acting as a router for server routes received from the management service</string>
     <string name="advanced_disable_dns">Disable DNS</string>
-    <string name="advanced_disable_dns_desc">Disables NetBird DNS configuration on this device</string>
+    <string name="advanced_disable_dns_desc">Disables Unblockr DNS configuration on this device</string>
     <string name="advanced_disable_firewall">Disable firewall</string>
-    <string name="advanced_disable_firewall_desc">Disables the NetBird firewall</string>
+    <string name="advanced_disable_firewall_desc">Disables the Unblockr firewall</string>
     <string name="advanced_allow_ssh">Enable SSH</string>
     <string name="advanced_allow_ssh_desc">Allows SSH connections to this device</string>
     <string name="advanced_block_inbound">Block inbound connections</string>
     <string name="advanced_block_inbound_desc">Blocks all inbound connections to this device and routed networks. This overrides any policies received from the management service</string>
 
 
-    <string name="desc_logo">NetBird logo</string>
+    <string name="desc_logo">Unblockr logo</string>
     <string name="desc_exclamation_mark">exclamation mark</string>
     <string name="desc_peers_empty">empty box</string>
 
-    <string name="dialog_always_on_desc"><![CDATA[You have a VPN app that has Always On turned on. To enable the NetBird app, you first need to go to your <b>Network & Internet settings</b> → <b>Advanced</b> → Check the <b>gear icon</b> for all the apps listed here on this page. Disable Always On for the apps that are not NetBird.]]></string>
+    <string name="dialog_always_on_desc"><![CDATA[You have a VPN app that has Always On turned on. To enable the Unblockr app, you first need to go to your <b>Network & Internet settings</b> → <b>Advanced</b> → Check the <b>gear icon</b> for all the apps listed here on this page. Disable Always On for the apps that are not Unblockr.]]></string>
 
     <string name="advanced_theme_system">System</string>
     <string name="advanced_theme_title">Theme Mode</string>

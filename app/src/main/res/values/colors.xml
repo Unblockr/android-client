@@ -8,22 +8,22 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="nb_bg">#F2F2F2</color>
-    <color name="nb_bg_peers">#F5F5F5</color>
-    <color name="nb_bg_home">#DEDEDE</color>
-    <color name="nb_bg_mask">#F2F2F2</color>
-    <color name="nb_gray_light">#F5F5F5</color>
-    <color name="nb_gray_dark">#4E4E4E</color>
-    <color name="nb_gray_bg">#eeeeee</color>
-    <color name="nb_gray_separator">#dadada</color>
-    <color name="nb_gray_border">#ececec</color>
-    <color name="nb_orange">#F58431</color>
-    <color name="nb_txt">#454545</color>
-    <color name="nb_txt_light">#7c7c7c</color>
-    <color name="nb_button_inactive">#4E4E4E</color>
+    <color name="nb_bg">#12121A</color>
+    <color name="nb_bg_peers">#12121A</color>
+    <color name="nb_bg_home">#12121A</color>
+    <color name="nb_bg_mask">#12121A</color>
+    <color name="nb_gray_light">#1E1E2A</color>
+    <color name="nb_gray_dark">#12121A</color>
+    <color name="nb_gray_bg">#1E1E2A</color>
+    <color name="nb_gray_separator">#2A2A3A</color>
+    <color name="nb_gray_border">#2A2A3A</color>
+    <color name="nb_orange">#FF2D8A</color>
+    <color name="nb_txt">#FFFFFF</color>
+    <color name="nb_txt_light">#B0B0C0</color>
+    <color name="nb_button_inactive">#2A2A3A</color>
 
-    <color name="thumb_on_color">#F58431</color>
+    <color name="thumb_on_color">#FF2D8A</color>
     <color name="thumb_off_color">#FFFFFF</color>
-    <color name="track_on_color">#89F58431</color>
-    <color name="track_off_color">#40000000</color>
+    <color name="track_on_color">#80FF2D8A</color>
+    <color name="track_off_color">#2A2A3A</color>
 </resources>

@@ -38,6 +38,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import io.netbird.client.databinding.ActivityMainBinding;
+import io.netbird.client.tool.ProfileManagerWrapper;
 import io.netbird.client.tool.RouteChangeListener;
 import io.netbird.client.tool.ServiceStateListener;
 import io.netbird.client.tool.VPNService;
@@ -171,14 +172,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.nav_home) {
-                removeToolbarShadow();
-                // Update profile menu item when returning to home (e.g., after profile switch)
-                if (binding != null && binding.navView != null) {
-                    updateProfileMenuItem(binding.navView);
-                }
-            } else {
+            if (destination.getId() == R.id.nav_setup) {
                 resetToolbar();
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            } else if (!hasValidRegistration()) {
+                // Unregistered — block and redirect back to setup
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                binding.getRoot().post(() -> {
+                    if (navController.getCurrentDestination() != null
+                            && navController.getCurrentDestination().getId() != R.id.nav_setup) {
+                        navController.navigate(R.id.nav_setup);
+                    }
+                });
+            } else {
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                if (destination.getId() == R.id.nav_home) {
+                    removeToolbarShadow();
+                    // Update profile menu item when returning to home (e.g., after profile switch)
+                    if (binding != null && binding.navView != null) {
+                        updateProfileMenuItem(binding.navView);
+                    }
+                } else {
+                    resetToolbar();
+                }
             }
         });
 
@@ -257,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
 
-        if (!PreferenceUI.isRegistered(this)) {
+        if (!hasValidRegistration()) {
             showSetupFragment();
         }
 
@@ -276,6 +292,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Update profile menu item when returning to MainActivity
         if (binding != null && binding.navView != null) {
             updateProfileMenuItem(binding.navView);
+        }
+        if (!hasValidRegistration()) {
+            showSetupFragment();
         }
     }
 
@@ -339,6 +358,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onSupportNavigateUp() {
+        if (!hasValidRegistration()
+                && navController.getCurrentDestination() != null
+                && navController.getCurrentDestination().getId() == R.id.nav_setup) {
+            return true; // Block up navigation until registered
+        }
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
@@ -488,10 +512,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void showSetupFragment() {
-        if (navController != null) {
-            navController.navigate(R.id.nav_setup);
-        } else {
+        if (navController == null) {
             Log.w(LOGTAG, "NavController is null, can't navigate to SetupFragment");
+            return;
+        }
+        if (navController.getCurrentDestination() != null
+                && navController.getCurrentDestination().getId() == R.id.nav_setup) {
+            return; // Already on setup
+        }
+        navController.navigate(R.id.nav_setup);
+    }
+
+    private boolean hasValidRegistration() {
+        if (!PreferenceUI.isRegistered(this)) return false;
+        try {
+            ProfileManagerWrapper profileManager = new ProfileManagerWrapper(this);
+            String configPath = profileManager.getActiveConfigPath();
+            return new java.io.File(configPath).exists();
+        } catch (Exception e) {
+            return false;
         }
     }
 

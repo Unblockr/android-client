@@ -12,7 +12,7 @@ public class MyApplication extends Application {
         super.onCreate();
         // Set Theme at start
         SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
-        int themeMode = prefs.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        int themeMode = prefs.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_YES);
         AppCompatDelegate.setDefaultNightMode(themeMode);
     }
 }
